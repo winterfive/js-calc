@@ -21,27 +21,27 @@ class MyApp extends React.Component {
   
   render() {
     return (
-      <div>      
+      <div>
         <div id="numPanel">
-          <div id="row1">
-            <div id="seven">7</div>
-            <div id="eight">8</div>
-            <div id="nine">9</div>
+          <div id="row1" class="row">
+            <div id="seven" class="numButton">7</div>
+            <div id="eight" class="numButton">8</div>
+            <div id="nine" class="numButton">9</div>
           </div>
-          <div id="row2">
-            <div id="four">4</div>
-            <div id="five">5</div>
-            <div id="six">6</div>
+          <div id="row2" class="row">
+            <div id="four" class="numButton">4</div>
+            <div id="five" class="numButton">5</div>
+            <div id="six" class="numButton">6</div>
           </div>
-          <div id="row3">
-            <div id="three">3</div>
-            <div id="two">2</div>
-            <div id="one">1</div>
+          <div id="row3" class="row">
+            <div id="three" class="numButton">3</div>
+            <div id="two" class="numButton">2</div>
+            <div id="one" class="numButton">1</div>
           </div>
-          <div id="row4">
-            <div id="clear">C</div>
-            <div id="zero">0</div>
-            <div id="decimal">.</div>
+          <div id="row4" class="row">
+            <div id="clear" class="numButton">C</div>
+            <div id="zero" class="numButton">0</div>
+            <div id="decimal" class="numButton">.</div>
           </div>      
         </div>
         <div id="col">
@@ -55,3 +55,5 @@ class MyApp extends React.Component {
     )
   }
 }
+
+ReactDOM.render(<MyApp />, document.getElementById("root"));
