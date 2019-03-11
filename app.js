@@ -2,7 +2,8 @@ class MyApp extends React.Component {
   constructor(props) {
     super(props); {
       this.state = {
-        result: "12,567",
+        resultDisplay: "12,567",
+        result: 0,
         num: 0,
         input: []
       }
@@ -23,7 +24,7 @@ class MyApp extends React.Component {
     return (
       <div>
         <div id="resultDiv">
-          <div id="display">{this.state.result}</div>
+          <div id="display">{this.state.resultDisplay}</div>
         </div>
         <div id="buttonDiv">
           <div>
