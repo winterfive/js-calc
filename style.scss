@@ -2,6 +2,7 @@
 $bg-button: white;
 $bg-color: lightblue;
 $bg-display: black;
+$bg-button-hv: rgb(0, 204, 68);
 $font-sz: 2.5em;
 $rnd-border: 10px;
 
@@ -48,6 +49,11 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.numButton:hover {
+  background-color: $bg-button-hv;
+  color: $bg-button;
 }
 
 .opsButton {
