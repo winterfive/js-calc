@@ -22,9 +22,11 @@ class MyApp extends React.Component {
   render() {
     return (
       <div>
-        <div id="display"></div>
-        <div id="calcDiv">
-          <div id="numDiv">
+        <div id="resultDiv">
+          <div id="display">{this.state.result}</div>
+        </div>
+        <div id="buttonDiv">
+          <div>
             <div id="row1" class="row">
               <div id="seven" class="numButton">7</div>
               <div id="eight" class="numButton">8</div>
