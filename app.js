@@ -10,7 +10,12 @@ class MyApp extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  clearAll() {}
+  clearAll() {
+    this.setState ({
+      resultDisplay: "0",
+      result: 0
+    });
+  }
 
   calculate() {
     // switch statement
@@ -60,7 +65,7 @@ class MyApp extends React.Component {
               </div>
             </div>
             <div id="row4" class="row">
-              <div id="clear" class="numButton" onClick={this.handleClick}>
+              <div id="clear" class="numButton" onClick={this.clearAll}>
                 C
               </div>
               <div id="zero" class="numButton" onClick={this.handleClick}>
