@@ -1,10 +1,17 @@
 @import "breakpoint";
-$bg-button: white;
+
+// General Vars
 $bg-color: lightblue;
-$bg-display: black;
-$bg-button-hv: rgb(0, 77, 153);
 $font-sz: 2.5em;
 $rnd-border: 10px;
+
+// Display
+$bg-display: black;
+$num-color: rgb(102, 255, 102);
+
+// Buttons
+$bg-button: white;
+$bg-button-hv: rgb(0, 77, 153);
 $button-shadow: darkgrey;
 $button-trans: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 
@@ -20,17 +27,15 @@ body {
 
 #display {
   height: 100px;
+  color: $num-color;
   background-color: $bg-display;
   border-radius: $rnd-border;
 }
 
-#calcDiv {
+#buttonDiv {
   display: flex;
   flex-direction: row;
   justify-content: center;
-}
-
-#numDiv {
 }
 
 #opsDiv {
