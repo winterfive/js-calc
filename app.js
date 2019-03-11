@@ -2,7 +2,7 @@ class MyApp extends React.Component {
   constructor(props) {
     super(props); {
       this.state = {
-        result: 0,
+        result: "12,567",
         num: 0,
         input: []
       }
