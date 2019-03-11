@@ -5,6 +5,8 @@ $bg-display: black;
 $bg-button-hv: rgb(0, 77, 153);
 $font-sz: 2.5em;
 $rnd-border: 10px;
+$button-shadow: darkgrey;
+$button-trans: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 
 body {
   font-family: sans-serif;
@@ -49,11 +51,20 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: 0 3px $button-shadow;
+	transition: $button-trans;
+	-moz-transition: $button-trans;
+	-webkit-transition: $button-trans;
 }
 
 .numButton:hover {
   background-color: $bg-button-hv;
   color: $bg-button;
+}
+
+.numButton:active {
+	transform: translateY(2px);
+	box-shadow: none;
 }
 
 .opsButton {
