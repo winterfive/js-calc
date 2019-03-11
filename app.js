@@ -22,6 +22,7 @@ class MyApp extends React.Component {
   render() {
     return (
       <div>
+        <div id="display"></div>
         <div id="calcDiv">
           <div id="numDiv">
             <div id="row1" class="row">
