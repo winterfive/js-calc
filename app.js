@@ -8,7 +8,7 @@ class MyApp extends React.Component {
       result: 0,
       num1: 0,
       num2: 0,
-      input: []
+      operator: ""
     };
     this.handleNumber = this.handleNumber.bind(this);
     this.clearAll = this.clearAll.bind(this);
@@ -20,7 +20,7 @@ class MyApp extends React.Component {
       result: 0,
       num1: 0,
       num2: 0,
-      input: []
+      operator: ""
     });
   }
 
