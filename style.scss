@@ -1,10 +1,28 @@
+@import "breakpoint";
+$button-bg: white;
+$bg-color: lightblue;
+
 body {
   font-family: sans-serif;
-  background-color: lightblue;
+  background-color: $bg-color;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 80vh;
+}
+
+#calcDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#numDiv {
+}
+
+#opsDiv {
+  display: flex;
+  flex-direction: column;
 }
 
 .row {
@@ -14,10 +32,16 @@ body {
 .numButton {
   height: 100px;
   width: 100px;
-  border: 2px solid white;
+  background-color: $button-bg;
   border-radius: 10%;
   margin: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.opsButton {
+  @extend .numButton;
+  height: 78px;
+  width: 80px;
 }
