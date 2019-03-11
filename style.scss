@@ -2,7 +2,7 @@
 
 // General Vars
 $bg-color: lightblue;
-$font-sz: 2.5em;
+$font-sz: 2.1em;
 $rnd-border: 10px;
 
 // Display
@@ -12,8 +12,9 @@ $num-color: rgb(102, 255, 102);
 // Buttons
 $bg-button: white;
 $bg-button-hv: rgb(0, 77, 153);
-$button-shadow: darkgrey;
+$button-shadow: rgb(100, 100, 100);
 $button-trans: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+$equal-btn: rgb(230, 100, 0);
 
 body {
   font-family: sans-serif;
@@ -88,4 +89,9 @@ body {
   @extend .numButton;
   height: 78px;
   width: 80px;
+}
+
+#equals {
+  @extends .numButton;
+  background-color: $equal-btn;
 }
