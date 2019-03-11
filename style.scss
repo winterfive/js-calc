@@ -25,11 +25,23 @@ body {
   height: 80vh;
 }
 
-#display {
+#resultDiv {
   height: 100px;
+  margin-bottom: 10px;
   color: $num-color;
   background-color: $bg-display;
   border-radius: $rnd-border;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+#display {
+  width: 90%;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: flex-end;
 }
 
 #buttonDiv {
