@@ -1,27 +1,46 @@
+const 
+
 class MyApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       resultDisplay: "12,567",
       result: 0,
-      num: 0,
+      num1: 0,
+      num2: 0,
       input: []
     };
     this.handleClick = this.handleClick.bind(this);
   }
 
-  clearAll() {
-    this.setState ({
+  clearAll() {    
+    this.setState = ({
       resultDisplay: "0",
-      result: 0
+      result: 0,
+      num1: 0,
+      num2: 0,
+      input: []
     });
   }
 
   calculate() {
+    switch
     // switch statement
   }
 
-  handleClick() {}
+  handleClick(x) {
+    console.log(x);
+    if(num1 == 0) {
+      this.setState = ({
+      num1: x
+      });
+    } else {
+      this.setState = ({
+        num2: x
+      });
+      calculate();
+    }        
+  }
 
   render() {
     return (
@@ -31,65 +50,65 @@ class MyApp extends React.Component {
         </div>
         <div id="buttonDiv">
           <div>
-            <div id="row1" class="row">
-              <div id="seven" class="numButton" onClick={this.handleClick}>
+            <div id="row1" className="row">
+              <div id="seven" className="numButton" onClick={() => this.handleClick(7)}>
                 7
               </div>
-              <div id="eight" class="numButton" onClick={this.handleClick}>
+              <div id="eight" className="numButton" onClick={() => this.handleClick(8)}>
                 8
               </div>
-              <div id="nine" class="numButton" onClick={this.handleClick}>
+              <div id="nine" className="numButton" onClick={() => this.handleClick(9)}>
                 9
               </div>
             </div>
-            <div id="row2" class="row">
-              <div id="four" class="numButton" onClick={this.handleClick}>
+            <div id="row2" className="row">
+              <div id="four" className="numButton" onClick={() => this.handleClick(4)}>
                 4
               </div>
-              <div id="five" class="numButton" onClick={this.handleClick}>
+              <div id="five" className="numButton" onClick={() => this.handleClick(5)}>
                 5
               </div>
-              <div id="six" class="numButton" onClick={this.handleClick}>
+              <div id="six" className="numButton" onClick={() => this.handleClick(6)}>
                 6
               </div>
             </div>
-            <div id="row3" class="row">
-              <div id="three" class="numButton" onClick={this.handleClick}>
+            <div id="row3" className="row">
+              <div id="three" className="numButton" onClick={() => this.handleClick(3)}>
                 3
               </div>
-              <div id="two" class="numButton" onClick={this.handleClick}>
+              <div id="two" className="numButton" onClick={() => this.handleClick(2)}>
                 2
               </div>
-              <div id="one" class="numButton" onClick={this.handleClick}>
+              <div id="one" className="numButton" onClick={() => this.handleClick(1)}>
                 1
               </div>
             </div>
-            <div id="row4" class="row">
-              <div id="clear" class="numButton" onClick={this.clearAll}>
+            <div id="row4" className="row">
+              <div id="clear" className="numButton" onClick={() => this.clearAll}>
                 C
               </div>
-              <div id="zero" class="numButton" onClick={this.handleClick}>
+              <div id="zero" className="numButton" onClick={() => this.handleClick(0)}>
                 0
               </div>
-              <div id="decimal" class="numButton" onClick={this.handleClick}>
+              <div id="decimal" className="numButton" onClick={() => this.handleClick(1)}>
                 .
               </div>
             </div>
           </div>
           <div id="opsDiv">
-            <div id="divide" class="opsButton" onClick={this.handleClick}>
+            <div id="divide" className="opsButton" onClick={this.handleClick}>
               <i class="fas fa-divide" />
             </div>
-            <div id="multiply" class="opsButton" onClick={this.handleClick}>
+            <div id="multiply" className="opsButton" onClick={this.handleClick}>
               <i class="fas fa-times" />
             </div>
-            <div id="subtract" class="opsButton" onClick={this.handleClick}>
+            <div id="subtract" className="opsButton" onClick={this.handleClick}>
               <i class="fas fa-minus" />
             </div>
-            <div id="add" class="opsButton" onClick={this.handleClick}>
+            <div id="add" className="opsButton" onClick={this.handleClick}>
               <i class="fas fa-plus" />
             </div>
-            <div id="equals" class="opsButton" onClick={this.handleClick}>
+            <div id="equals" className="opsButton" onClick={this.handleClick}>
               <i class="fas fa-equals" />
             </div>
           </div>
