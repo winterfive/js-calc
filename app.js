@@ -7,7 +7,8 @@ class MyApp extends React.Component {
       result: 0,
       num1: 0,
       num2: 0,
-      operator: ""
+      operator: "",
+      waitingForOp: true
     };
     this.handleNumber = this.handleNumber.bind(this);
     this.clearAll = this.clearAll.bind(this);
@@ -19,7 +20,8 @@ class MyApp extends React.Component {
       result: 0,
       num1: 0,
       num2: 0,
-      operator: ""
+      operator: "",
+      waitingForOp: true
     });
     currentNum = 0;
   }
@@ -54,7 +56,8 @@ class MyApp extends React.Component {
   
   handleOperator(op) {
     this.setState ({
-      operator: op
+      operator: op,
+      waitingForOp: false
     });
   }
     /*
@@ -144,10 +147,10 @@ class MyApp extends React.Component {
             <div id="divide" className="opsButton" onClick={() => this.handleOperator('divide')}>
               <i class="fas fa-divide" />
             </div>
-            <div id="multiply" className="opsButton" onClick={() => this.handleOperator('multiply')}>
+            <div id="multiply" className="opsButton" onClick={() => this.handleOperator('times')}>
               <i class="fas fa-times" />
             </div>
-            <div id="subtract" className="opsButton" onClick={() => this.handleOperator('subtract')}>
+            <div id="subtract" className="opsButton" onClick={() => this.handleOperator('minus')}>
               <i class="fas fa-minus" />
             </div>
             <div id="add" className="opsButton" onClick={() => this.handleOperator('add')}>
