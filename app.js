@@ -36,7 +36,9 @@ class MyApp extends React.Component {
   }
   
   handleDot() {
-    currentNum = currentNum + .;
+    if(currentNum.indexOf('.') === -1) {
+      currentNum = currentNum + '.';
+    }    
   }
 
   render() {
