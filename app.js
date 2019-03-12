@@ -1,4 +1,4 @@
-let currentNum = 0;
+let currentNum, counter = 0;
 
 class MyApp extends React.Component {
   constructor(props) {
@@ -20,18 +20,19 @@ class MyApp extends React.Component {
       num2: 0,
       operator: ""
     });
+    currentNum = 0;
   }
 
   calculate() {
     // switch statement
   }
 
-  handleNumber(x) {
-    //const { result } = this.state
-    currentNum = "" + currentNum + x;
-    this.setState({
+  handleNumber(digit) {
+    // TODO Limit currentNum/result len to 20 digits
+    currentNum = currentNum === 0? String(digit) : currentNum + digit;
+    this.setState({      
       result: currentNum
-    });
+    });   
   }
 
   render() {
