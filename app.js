@@ -1,4 +1,4 @@
-let currentNum, counter = 0;
+let currentNum = 0;
 
 class MyApp extends React.Component {
   constructor(props) {
@@ -7,8 +7,7 @@ class MyApp extends React.Component {
       displayNum: 0,
       num1: 0,
       num2: 0,
-      operator: "",
-      waitingForOp: true
+      operator: ""
     };
     this.handleNumber = this.handleNumber.bind(this);
     this.clearAll = this.clearAll.bind(this);
@@ -20,8 +19,7 @@ class MyApp extends React.Component {
       displayNum: 0,
       num1: 0,
       num2: 0,
-      operator: "",
-      waitingForOp: true
+      operator: ""
     });
     currentNum = 0;
   }
@@ -57,16 +55,16 @@ class MyApp extends React.Component {
   handleOperator(op) {
     this.setState({
       operator: op,
-      waitingForOp: false,
-      displayNum: 0
+      num1: currentNum
     });
-    storeNum();
+    this.storeNum();
+    currentNum = 0;
   }
   
   storeNum() {
     this.setState({
       num1: currentNum
-    })
+    });
   }
     /*
     switch(op) {
