@@ -11,6 +11,7 @@ class MyApp extends React.Component {
     };
     this.handleNumber = this.handleNumber.bind(this);
     this.clearAll = this.clearAll.bind(this);
+    this.handleOperator = this.handleOperator.bind(this);
   }
 
   clearAll() {    
@@ -50,6 +51,41 @@ class MyApp extends React.Component {
     currentNum = currentNum.charAt(0) === '-'? currentNum.substr(1) : "-" + currentNum 
   }
   */
+  
+  handleOperator(op) {
+    this.setState ({
+      operator: op
+    });
+  }
+    /*
+    switch(op) {
+      case "divide":
+        this.setState ({
+          operator: "divide"
+        })
+        break;
+      case "multiply":
+        this.setState ({
+          operator: "multiply"
+        })
+        break;
+      case "subtract":
+        this.setState ({
+          operator: "subtract"
+        })
+        break;
+      case "add":
+        this.setState ({
+          operator: "add"
+        })
+        break;
+      default:
+        // equals
+        if(num1 && num2) {
+          // do operation
+        }
+    }
+    */
 
   render() {
     return (
@@ -105,19 +141,19 @@ class MyApp extends React.Component {
             </div>
           </div>
           <div id="opsDiv">
-            <div id="divide" className="opsButton" onClick={this.handleNumber}>
+            <div id="divide" className="opsButton" onClick={() => this.handleOperator('divide')}>
               <i class="fas fa-divide" />
             </div>
-            <div id="multiply" className="opsButton" onClick={this.handleNumber}>
+            <div id="multiply" className="opsButton" onClick={() => this.handleOperator('multiply')}>
               <i class="fas fa-times" />
             </div>
-            <div id="subtract" className="opsButton" onClick={this.handleNumber}>
+            <div id="subtract" className="opsButton" onClick={() => this.handleOperator('subtract')}>
               <i class="fas fa-minus" />
             </div>
-            <div id="add" className="opsButton" onClick={this.handleNumber}>
+            <div id="add" className="opsButton" onClick={() => this.handleOperator('add')}>
               <i class="fas fa-plus" />
             </div>
-            <div id="equals" className="opsButton" onClick={this.handleNumber}>
+            <div id="equals" className="opsButton" onClick={() => this.handleOperator('equals')}>
               <i class="fas fa-equals" />
             </div>
           </div>
