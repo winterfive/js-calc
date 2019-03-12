@@ -4,7 +4,6 @@ class MyApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      resultDisplay: "",
       result: 0,
       num1: 0,
       num2: 0,
@@ -16,7 +15,6 @@ class MyApp extends React.Component {
 
   clearAll() {    
     this.setState({
-      resultDisplay: "0",
       result: 0,
       num1: 0,
       num2: 0,
@@ -29,9 +27,10 @@ class MyApp extends React.Component {
   }
 
   handleNumber(x) {
-    //const { resultDisplay } = this.state
+    //const { result } = this.state
+    currentNum = "" + currentNum + x;
     this.setState({
-      resultDisplay: this.state.resultDisplay + x
+      result: currentNum
     });
   }
 
@@ -39,7 +38,7 @@ class MyApp extends React.Component {
     return (
       <div>
         <div id="resultDiv">
-          <div id="display">{this.state.resultDisplay}</div>
+          <div id="display">{this.state.result}</div>
         </div>
         <div id="buttonDiv">
           <div>
