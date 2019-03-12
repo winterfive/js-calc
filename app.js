@@ -34,6 +34,10 @@ class MyApp extends React.Component {
       result: currentNum
     });   
   }
+  
+  handleDot() {
+    currentNum = currentNum + .;
+  }
 
   render() {
     return (
@@ -83,7 +87,7 @@ class MyApp extends React.Component {
               <div id="zero" className="numButton" onClick={() => this.handleNumber(0)}>
                 0
               </div>
-              <div id="decimal" className="numButton" onClick={() => this.handleNumber(1)}>
+              <div id="decimal" className="numButton" onClick={() => this.handleDot()}>
                 .
               </div>
             </div>
