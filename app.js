@@ -57,14 +57,7 @@ class MyApp extends React.Component {
       operator: op,
       num1: currentNum
     });
-    this.storeNum();
     currentNum = 0;
-  }
-  
-  storeNum() {
-    this.setState({
-      num1: currentNum
-    });
   }
     /*
     switch(op) {
