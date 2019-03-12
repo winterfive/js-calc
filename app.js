@@ -27,19 +27,29 @@ class MyApp extends React.Component {
     // switch statement
   }
 
+  // Handles numerical input, sets state
+  // int -> void
   handleNumber(digit) {
-    // TODO Limit currentNum/result len to 20 digits
+    // TODO Limit currentNum/result len to 20 digits TODO
     currentNum = currentNum === 0? String(digit) : currentNum + digit;
     this.setState({      
       result: currentNum
     });   
   }
   
+  // Handles decimal input
+  // void -> void
   handleDot() {
     if(currentNum.indexOf('.') === -1) {
       currentNum = currentNum + '.';
     }    
   }
+  
+  /*
+  handleNegPos() {
+    currentNum = currentNum.charAt(0) === '-'? currentNum.substr(1) : "-" + currentNum 
+  }
+  */
 
   render() {
     return (
