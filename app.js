@@ -4,7 +4,7 @@ class MyApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      result: 0,
+      displayNum: 0,
       num1: 0,
       num2: 0,
       operator: "",
@@ -17,7 +17,7 @@ class MyApp extends React.Component {
 
   clearAll() {    
     this.setState({
-      result: 0,
+      displayNum: 0,
       num1: 0,
       num2: 0,
       operator: "",
@@ -33,10 +33,10 @@ class MyApp extends React.Component {
   // Handles numerical input, sets state
   // int -> void
   handleNumber(digit) {
-    // TODO Limit currentNum/result len to 20 digits TODO
+    // TODO Limit currentNum/displayNum len to 20 digits TODO
     currentNum = currentNum === 0? String(digit) : currentNum + digit;
     this.setState({      
-      result: currentNum
+      displayNum: currentNum
     });   
   }
   
@@ -55,10 +55,18 @@ class MyApp extends React.Component {
   */
   
   handleOperator(op) {
-    this.setState ({
+    this.setState({
       operator: op,
-      waitingForOp: false
+      waitingForOp: false,
+      displayNum: 0
     });
+    storeNum();
+  }
+  
+  storeNum() {
+    this.setState({
+      num1: currentNum
+    })
   }
     /*
     switch(op) {
@@ -93,8 +101,8 @@ class MyApp extends React.Component {
   render() {
     return (
       <div>
-        <div id="resultDiv">
-          <div id="display">{this.state.result}</div>
+        <div id="displayNumDiv">
+          <div id="display">{this.state.displayNum}</div>
         </div>
         <div id="buttonDiv">
           <div>
