@@ -4,7 +4,7 @@ class MyApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      resultDisplay: "0",
+      resultDisplay: "",
       result: 0,
       num1: 0,
       num2: 0,
@@ -29,9 +29,9 @@ class MyApp extends React.Component {
   }
 
   handleNumber(x) {
-    const { resultDisplay } = this.state
+    //const { resultDisplay } = this.state
     this.setState({
-      resultDisplay: resultDisplay + x
+      resultDisplay: this.state.resultDisplay + x
     });
   }
 
@@ -77,7 +77,7 @@ class MyApp extends React.Component {
               </div>
             </div>
             <div id="row4" className="row">
-              <div id="clear" className="numButton" onClick={() => this.clearAll}>
+              <div id="clear" className="numButton" onClick={() => this.clearAll()}>
                 C
               </div>
               <div id="zero" className="numButton" onClick={() => this.handleNumber(0)}>
