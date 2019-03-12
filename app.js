@@ -25,10 +25,10 @@ class MyApp extends React.Component {
   }
 
   calculate() {
-    // switch statement
+    // switch statement TODO
   }
 
-  // Handles numerical input, sets state
+  // Handles numerical input
   // int -> void
   handleNumber(digit) {
     // TODO Limit currentNum/displayNum len to 20 digits TODO
@@ -43,6 +43,9 @@ class MyApp extends React.Component {
   handleDot() {
     if(currentNum.indexOf('.') === -1) {
       currentNum = currentNum + '.';
+      this.setState({      
+        displayNum: currentNum
+      });       
     }    
   }
   
@@ -52,6 +55,8 @@ class MyApp extends React.Component {
   }
   */
   
+  // Saves operator chosen by user
+  // string -> void
   handleOperator(op) {
     this.setState({
       operator: op,
