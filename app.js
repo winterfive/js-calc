@@ -59,10 +59,17 @@ class MyApp extends React.Component {
   // string -> void
   handleOperator(op) {
     this.setState({
-      operator: op,
-      num1: currentNum
+      operator: op
+    });
+    this.setForNextNum();
+  }
+  
+  setForNextNum() {
+    this.setState({
+      num1: currentNum 
     });
     currentNum = 0;
+    
   }
     /*
     switch(op) {
