@@ -34,7 +34,7 @@ class MyApp extends React.Component {
   // Handles numerical input
   // int -> void
   handleNumber(digit) {
-    if(currentNum.length >== 20) {
+    if(currentNum.length >= 20) {
       alert("Operand length limited to 20 places.");
     } 
     else if(digit === 0 && currentNum === 0) {
@@ -81,6 +81,10 @@ class MyApp extends React.Component {
   }
   
   setForNextNum() {
+    console.log("numOneSet: " + numOneSet);
+    console.log("current: " + currentNum + ", type of current: " + typeof currentNum);
+    console.log("num1: " + this.state.num1 + ", type of num1: " + typeof this.state.num1);
+    
     if(numOneSet === false) {
       this.setState({
         num1: currentNum 
@@ -88,14 +92,9 @@ class MyApp extends React.Component {
       currentNum = 0;
       numOneSet = true;
     }
-    console.log("typeOf displayNum: " + this.displayNum); // ignoring this why?
-    console.log("type of current before: " + typeof currentNum);
-    console.log("type of num1 before: " + typeof this.num1);
-    console.log("num1: " + this.num1);
-    console.log("currentNum is: " + currentNum);
     console.log("numOneSet: " + numOneSet);
-    console.log("type of current after: " + typeof currentNum);
-    console.log("typeof num1 after: " + typeof this.num1);
+    console.log("currentNum: " + currentNum + ", type of current: " + typeof currentNum);
+    console.log("num1: " + this.state.num1 + ", type of num1: " + typeof this.state.num1);
   }
     /*
     switch(op) {
