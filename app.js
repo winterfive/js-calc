@@ -34,7 +34,7 @@ class MyApp extends React.Component {
     if(currentNum.length >= 20) {
       alert("Operand length limited to 20 places.");
     } 
-    else if(digit === 0 && currentNumber.every(allZeros())) {
+    else if(digit === 0 && currentNum === 0) {
         currentNum = 0;
     } else {
       currentNum = currentNum === 0? String(digit) : currentNum + digit; 
@@ -43,10 +43,6 @@ class MyApp extends React.Component {
     this.setState({
       displayNum: currentNum
     })
-  }
-    
-  allZeros(num) {
-    return num !== 0;
   }
   
   // Handles decimal input
