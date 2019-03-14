@@ -1,5 +1,6 @@
 let currentNum = 0;
-let numOneSet = false;
+let haveOperator = false;
+let haveFirstOperand = false;
 
 class MyApp extends React.Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class MyApp extends React.Component {
     this.handleNumber = this.handleNumber.bind(this);
     this.clearAll = this.clearAll.bind(this);
     this.handleOperator = this.handleOperator.bind(this);
-    this.setForNextNum = this.setForNextNum.bind(this);
+    //this.assignNumOne = this.assignNumOne.bind(this);
   }
 
   clearAll() {    
@@ -24,7 +25,8 @@ class MyApp extends React.Component {
       operator: ""
     });
     currentNum = 0;
-    numOneSet = false;
+    haveOperator = false;
+    haveFirstOperand = false;
   }
 
   calculate() {
@@ -37,6 +39,7 @@ class MyApp extends React.Component {
     if(currentNum.length >= 20) {
       alert("Operand length limited to 20 places.");
     } 
+    // Doesn't allow multiple 0s in display
     else if(digit === 0 && currentNum === 0) {
         currentNum = 0;
     } else {
@@ -69,62 +72,55 @@ class MyApp extends React.Component {
   // string -> void
   handleOperator(op) {
     if(op === 'equals') {
-      numOneSet = true;
-      // call math method
-      console.log("calling math logic");
+      applyMath();
     } else {
       this.setState({
         operator: op
       });
-      this.setForNextNum();
+      haveOperator = true;
+      assignNumOne();
     }
   }
   
-  setForNextNum() {
-    console.log("numOneSet: " + numOneSet);
-    console.log("current: " + currentNum + ", type of current: " + typeof currentNum);
-    console.log("num1: " + this.state.num1 + ", type of num1: " + typeof this.state.num1);
-    
-    if(numOneSet === false) {
+  // Changes num1 state once an operator is selected
+  // void -> void  
+  assignNumOne() {
+    // haveOperator handles user selecting several operators 
+    if(haveFirstOperand === false) {
       this.setState({
         num1: currentNum 
       });
       currentNum = 0;
-      numOneSet = true;
+      haveFirstOperand = true;
     }
-    console.log("numOneSet: " + numOneSet);
-    console.log("currentNum: " + currentNum + ", type of current: " + typeof currentNum);
-    console.log("num1: " + this.state.num1 + ", type of num1: " + typeof this.state.num1);
   }
-    /*
-    switch(op) {
-      case "divide":
-        this.setState ({
-          operator: "divide"
-        })
-        break;
-      case "multiply":
-        this.setState ({
-          operator: "multiply"
-        })
-        break;
-      case "subtract":
-        this.setState ({
-          operator: "subtract"
-        })
-        break;
-      case "add":
-        this.setState ({
-          operator: "add"
-        })
-        break;
-      default:
-        // equals
-        if(num1 && num2) {
-          // do operation
-        }
-    }
-    */
+  
+  applyMath() {
+    let result = 0;
+    
+    if(haveOperator) {
+      switch(op) {
+        case "divide":
+          result = this.state.num1 / currentNum;
+          break;
+        case "multiply":
+          result = this.state.num1 * currentNum;
+          break;
+        case "subtract":
+          result = this.state.num1 - currentNum;
+          break;
+        case "add":
+          result = this.state.num1 + currentNum;
+          break;
+        default:
+          break;
+      }      
+    }    
+    this.setState({
+      displayNum: result
+    })    
+    result = 0;
+  }
 
   render() {
     return (
