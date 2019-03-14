@@ -1,4 +1,4 @@
-let currentNum = 0;
+var currentNum = 0;
 
 class MyApp extends React.Component {
   constructor(props) {
@@ -31,11 +31,18 @@ class MyApp extends React.Component {
   // Handles numerical input
   // int -> void
   handleNumber(digit) {
-    // TODO Limit currentNum/displayNum len to 20 digits TODO
-    currentNum = currentNum === 0? String(digit) : currentNum + digit;
-    this.setState({      
+    if(currentNum.length >= 20) {
+      alert("Operand length limited to 20 places.");
+    } 
+    else if(digit === 0 && currentNum === 0) {
+        currentNum = 0;
+    } else {
+      currentNum = currentNum === 0? String(digit) : currentNum + digit; 
+    }
+    
+    this.setState({
       displayNum: currentNum
-    });   
+    })
   }
   
   // Handles decimal input
@@ -53,7 +60,7 @@ class MyApp extends React.Component {
   handleNegPos() {
     currentNum = currentNum.charAt(0) === '-'? currentNum.substr(1) : "-" + currentNum 
   }
-  */
+  */ 
   
   // Saves operator chosen by user
   // string -> void
@@ -168,7 +175,7 @@ class MyApp extends React.Component {
               <i class="fas fa-plus" />
             </div>
             <div id="equals" className="opsButton" onClick={() => this.handleOperator('equals')}>
-              <i class="fas fa-equals" />
+              <i class="fas fa-equals" />=
             </div>
           </div>
         </div>
