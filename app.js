@@ -1,4 +1,4 @@
-let currentNum = 0;
+var currentNum = 0;
 
 class MyApp extends React.Component {
   constructor(props) {
@@ -37,7 +37,7 @@ class MyApp extends React.Component {
     else if(digit === 0 && currentNumber.every(allZeros())) {
         currentNum = 0;
     } else {
-      currentNum = currentNum + digit;
+      currentNum = currentNum === 0? String(digit) : currentNum + digit; 
     }
     
     this.setState({
