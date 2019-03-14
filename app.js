@@ -111,16 +111,19 @@ class MyApp extends React.Component {
           result = this.state.num1 - currentNum;
           break;
         case "plus":
-          result = this.state.num1 + currentNum;
+          result = parseFloat(this.state.num1) + parseFloat(currentNum);
           break;
         default:
           break;
       }      
+    } else {
+      alert("You haven't selected an operation.")
     }
     console.log("result is: " + result);
     this.setState({
       displayNum: result
     })
+    result = 0;
   }
 
   render() {
