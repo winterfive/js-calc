@@ -1,4 +1,6 @@
-var currentNum = 0;
+let currentNum = 0;
+let haveOperator = false;
+let haveFirstOperand = false;
 
 class MyApp extends React.Component {
   constructor(props) {
@@ -12,6 +14,8 @@ class MyApp extends React.Component {
     this.handleNumber = this.handleNumber.bind(this);
     this.clearAll = this.clearAll.bind(this);
     this.handleOperator = this.handleOperator.bind(this);
+    this.assignFirstOperand = this.assignFirstOperand.bind(this);
+    this.applyMath = this.applyMath.bind(this);
   }
 
   clearAll() {    
@@ -22,6 +26,8 @@ class MyApp extends React.Component {
       operator: ""
     });
     currentNum = 0;
+    haveOperator = false;
+    haveFirstOperand = false;
   }
 
   calculate() {
@@ -34,6 +40,7 @@ class MyApp extends React.Component {
     if(currentNum.length >= 20) {
       alert("Operand length limited to 20 places.");
     } 
+    // Doesn't allow multiple 0s in display
     else if(digit === 0 && currentNum === 0) {
         currentNum = 0;
     } else {
@@ -62,51 +69,62 @@ class MyApp extends React.Component {
   }
   */ 
   
-  // Saves operator chosen by user
+  // Saves operator last selected by user
   // string -> void
   handleOperator(op) {
-    this.setState({
-      operator: op
-    });
-    this.setForNextNum();
+    if(op === 'equals') {
+      this.applyMath();
+    } else {
+      this.setState({
+        operator: op
+      });
+      haveOperator = true;
+      this.assignFirstOperand();
+    }
   }
   
-  setForNextNum() {
-    this.setState({
-      num1: currentNum 
-    });
-    currentNum = 0;
-    
-  }
-    /*
-    switch(op) {
-      case "divide":
-        this.setState ({
-          operator: "divide"
-        })
-        break;
-      case "multiply":
-        this.setState ({
-          operator: "multiply"
-        })
-        break;
-      case "subtract":
-        this.setState ({
-          operator: "subtract"
-        })
-        break;
-      case "add":
-        this.setState ({
-          operator: "add"
-        })
-        break;
-      default:
-        // equals
-        if(num1 && num2) {
-          // do operation
-        }
+  // Changes num1 state once an operator is selected
+  // void -> void  
+  assignFirstOperand() {
+    // haveOperator handles user selecting several operators 
+    if(haveFirstOperand === false) {
+      this.setState({
+        num1: currentNum 
+      });
+      haveFirstOperand = true;
+      currentNum = 0;
     }
-    */
+  }
+  
+  applyMath() {
+    let result = 0;
+    
+    if(haveOperator) {
+      switch(this.state.operator) {
+        case "divide":
+          result = this.state.num1 / currentNum;
+          break;
+        case "times":
+          result = this.state.num1 * currentNum;
+          break;
+        case "minus":
+          result = this.state.num1 - currentNum;
+          break;
+        case "plus":
+          result = parseFloat(this.state.num1) + parseFloat(currentNum);
+          break;
+        default:
+          break;
+      }      
+    } else {
+      alert("You haven't selected an operation.")
+    }
+    console.log("result is: " + result);
+    this.setState({
+      displayNum: result
+    })
+    result = 0;
+  }
 
   render() {
     return (
@@ -171,7 +189,7 @@ class MyApp extends React.Component {
             <div id="subtract" className="opsButton" onClick={() => this.handleOperator('minus')}>
               <i class="fas fa-minus" />
             </div>
-            <div id="add" className="opsButton" onClick={() => this.handleOperator('add')}>
+            <div id="add" className="opsButton" onClick={() => this.handleOperator('plus')}>
               <i class="fas fa-plus" />
             </div>
             <div id="equals" className="opsButton" onClick={() => this.handleOperator('equals')}>
