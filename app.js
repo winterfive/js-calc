@@ -1,4 +1,4 @@
-
+let currentNum = 0;
 
 class MyApp extends React.Component {
   constructor(props) {
@@ -6,6 +6,7 @@ class MyApp extends React.Component {
     this.state = {
       displayNum: 0,
       num1: 0,
+      num2: 0,
       operator: ""
     };
    
@@ -15,24 +16,23 @@ class MyApp extends React.Component {
     this.setState({
       displayNum: 0,
       num1: 0,
+      num2: 0,
       operator: ""
     });
+    currentNum = 0;
   }
   
   handleInput(input) {
-    console.log("input is: " + input + ", type of input: " + typeof input);
+    //console.log("input is: " + input + ", type of input: " + typeof input);
     
     if(!isNaN(input)) {
-      console.log("1 input is int");
       this.handleNumber(input);      
     }
     else if(input === 'decimal') {
-      this.handleDecimal();
-      console.log("2 input is decimal");
+      this.handleDecimal();      
     } else {
       // input is operator
-      console.log("3 input is operator");
-      this.handleOperator(input);
+      this.handleOperator(input);           
     }
   }
 
