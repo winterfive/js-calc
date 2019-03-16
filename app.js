@@ -1,4 +1,5 @@
 let currentNum = 0;
+let num1Locked, num2Locked, opLocked = false;
 
 class MyApp extends React.Component {
   constructor(props) {
@@ -8,8 +9,7 @@ class MyApp extends React.Component {
       num1: 0,
       num2: 0,
       operator: ""
-    };
-   
+    };   
   }
 
   clearAll() {    
