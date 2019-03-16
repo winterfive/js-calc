@@ -1,3 +1,5 @@
+
+
 class MyApp extends React.Component {
   constructor(props) {
     super(props);
@@ -18,13 +20,18 @@ class MyApp extends React.Component {
   }
   
   handleInput(input) {
-    if(input.isInteger) {
-      this.handleNumber(input);
+    console.log("input is: " + input + ", type of input: " + typeof input);
+    
+    if(!isNaN(input)) {
+      console.log("1 input is int");
+      this.handleNumber(input);      
     }
-    else if(input === '.') {
+    else if(input === 'decimal') {
       this.handleDecimal();
+      console.log("2 input is decimal");
     } else {
       // input is operator
+      console.log("3 input is operator");
       this.handleOperator(input);
     }
   }
@@ -179,7 +186,7 @@ class MyApp extends React.Component {
               <div id="zero" className="numButton" onClick={() => this.handleInput(0)}>
                 0
               </div>
-              <div id="decimal" className="numButton" onClick={() => this.handleInput()}>
+              <div id="decimal" className="numButton" onClick={() => this.handleInput('decimal')}>
                 .
               </div>
             </div>
