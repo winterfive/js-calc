@@ -16,13 +16,13 @@ class MyApp extends React.Component {
   clearAll() {
     this.setState({
       displayNum: 0
-    });
+    })
     currentNum = 0;
+    num1 = 0;
     result = 0;
     hasDecimal = false;
     num1Entered = false;
-    operator = '';
-    num1 = 0;
+    operator = '';    
   }
 
   // Handles initial input by user
@@ -118,12 +118,17 @@ class MyApp extends React.Component {
         result = parseFloat(num1) + parseFloat(currentNum);
         break;
     }
+    
+    if(result.length > 20) {
+      result = +result.toFixed(20);
+    }
+    
     this.setState({
       displayNum: result
     })
     num1 = result;
     currentNum = 0;
-    console.lof('result is: ' + result);
+    console.log('result is: ' + result);
   }
 
   render() {
