@@ -1,5 +1,5 @@
 let currentNum = 0;
-let num1Locked, num2Locked, opLocked = false;
+let num1Locked, num2Locked, opLocked, hasDecimal = false;
 
 class MyApp extends React.Component {
   constructor(props) {
@@ -26,9 +26,9 @@ class MyApp extends React.Component {
   }
   
   handleInput(input) {
-    //console.log("input is: " + input + ", type of input: " + typeof input);    
+    console.log("input is: " + input + ", type of input: " + typeof input);    
     if(!isNaN(input)) {
-      this.displayNumber(input);      
+      this.handleNumber(input);      
     }
     else if(input === 'decimal') {
       this.handleDecimal();      
@@ -38,9 +38,9 @@ class MyApp extends React.Component {
     }
   }
 
-  // Handles/displays numerical input
+  // Displays numerical input
   // int -> void
-  displayNumber(digit) {
+  handleNumber(digit) {
     // Operands limited to 20 places
     if(currentNum.length >= 20) {
       alert("Operand length limited to 20 places.");
@@ -61,15 +61,13 @@ class MyApp extends React.Component {
 
   // Handles decimal input
   handleDecimal() {
-    console.log("Dec Index " + currentNum.indexOf('.'));
-    console.log("Bool " + currentNum.indexOf('.') === -1);
-    if(currentNum.indexOf('.') === -1) {
+    if(!hasDecimal) {
       currentNum = currentNum + '.';
       this.setState({      
         displayNum: currentNum
       })
     }
-    console.log(". currentNum is: " + currentNum);
+    hasDecimal = true;
   }
   
   /*
