@@ -20,13 +20,15 @@ class MyApp extends React.Component {
       operator: ""
     });
     currentNum = 0;
+    num1Locked = false;
+    num2Locked = false;
+    opLocked = false;
   }
   
   handleInput(input) {
-    //console.log("input is: " + input + ", type of input: " + typeof input);
-    
+    //console.log("input is: " + input + ", type of input: " + typeof input);    
     if(!isNaN(input)) {
-      this.handleNumber(input);      
+      this.displayNumber(input);      
     }
     else if(input === 'decimal') {
       this.handleDecimal();      
@@ -38,7 +40,7 @@ class MyApp extends React.Component {
 
   // Handles/displays numerical input
   // int -> void
-  handleNumber(digit) {
+  displayNumber(digit) {
     // Operands limited to 20 places
     if(currentNum.length >= 20) {
       alert("Operand length limited to 20 places.");
@@ -48,7 +50,7 @@ class MyApp extends React.Component {
         currentNum = 0;
     } else {
       currentNum = currentNum === 0? String(digit) : currentNum + digit; 
-    }
+    }    
     
     this.setState({
       displayNum: currentNum
@@ -70,17 +72,6 @@ class MyApp extends React.Component {
     console.log(". currentNum is: " + currentNum);
   }
   
-  storeOperand() {
-    this.setState({
-      num1: currentNum
-    });
-    if(haveFirstOperand === false) {
-      haveFirstOperand = true;
-    }    
-    currentNum = 0;
-    console.log("stored num1 is: " + this.state.num1);
-  }
-  
   /*
   handleNegPos() {
     currentNum = currentNum.charAt(0) === '-'? currentNum.substr(1) : "-" + currentNum 
@@ -90,8 +81,7 @@ class MyApp extends React.Component {
   // Saves operator last selected by user
   // string -> void
   handleOperator(op) {
-    console.log("op is: " + op + ", typof op is: " + typeof op);
-    // this is not catching!!! TODO
+    //console.log("op is: " + op + ", typof op is: " + typeof op);
     if(op === "equals") {
       this.displayResult();
     } else {
