@@ -11,8 +11,10 @@ class MyApp extends React.Component {
       num1: 0,
       num2: 0,
       operator: ""
-    };   
-  }
+    }
+    this.calculate = this.calculate.bind(this);
+  }  
+  
 
   clearAll() {    
     this.setState({
@@ -27,6 +29,9 @@ class MyApp extends React.Component {
     hasDecimal = false;
   }
   
+  
+  // Handles initial input by user
+  // string or number -> void
   handleInput(input) {
     if(!isNaN(input)) {
       console.log("handleInput: number");
@@ -41,9 +46,10 @@ class MyApp extends React.Component {
       this.handleOperator(input);           
     }
   }
+  
 
   // Displays numerical input
-  // int -> void
+  // number -> void
   handleNumber(digit) {
     // Operands limited to 20 places
     if(currentNum.length >= 20) {
@@ -59,9 +65,12 @@ class MyApp extends React.Component {
     this.setState({
       displayNum: currentNum
     });
+    console.log("digit handled");
   }
+  
 
   // Handles decimal input
+  // void -> void
   handleDecimal() {
     if(!hasDecimal) {
       currentNum = currentNum + '.';
@@ -70,6 +79,7 @@ class MyApp extends React.Component {
       })
     }
     hasDecimal = true;
+    console.log("decimal handled");
   }
   
   /*
@@ -80,33 +90,37 @@ class MyApp extends React.Component {
   
   // Saves operator last selected by user
   // string -> void
-  handleOperator(op) {        
+  handleOperator(op) {
+    // user selected =
     if(op === "equals") {
       console.log("equals pressed");
       this.displayResult();
     } else {
-      console.log("op pressed: " + op);
+      console.log("operator pressed");
       // user selected +, -, /, or x
       this.setState({
         operator: op
       });
       
-      // if we have two operands
+      // if we have two operands stored
       if(num1Locked) {
-        console.log("calculating...");
+        console.log("num1Locked: " + num1Locked + ", calling calculate() ");  // calculate not being called TODO
         this.calculate();
       } else {
         // store first operand
+        console.log("storing num1");
         this.setState({
           num1: currentNum
         });
+        console.log("num1: " + this.state.num1);  // this shows num1 is 0 TODO
         num1Locked = true;
         currentNum = 0;
       }            
     }
-    // reset hasDecimal
+    // reset hasDecimal for 2nd operand
     hasDecimal = false;
   }
+  
   
   displayResult() {
     this.setState({
@@ -114,7 +128,9 @@ class MyApp extends React.Component {
     })
   }
   
+ 
   calculate() {
+    console.log("got into calculate");
     switch(this.state.operator) {
       case "divide":
         result = this.state.num1 / currentNum;
@@ -137,6 +153,7 @@ class MyApp extends React.Component {
     currentNum = 0;
     this.displayResult();
   }
+  
 
   render() {
     return (
