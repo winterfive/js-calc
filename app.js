@@ -24,8 +24,6 @@ class MyApp extends React.Component {
     currentNum = 0;
     result = 0;
     num1Locked = false;
-    num2Locked = false;
-    opLocked = false;
     hasDecimal = false;
   }
   
@@ -87,6 +85,7 @@ class MyApp extends React.Component {
       console.log("equals pressed");
       this.displayResult();
     } else {
+      console.log("op pressed: " + op);
       // user selected +, -, /, or x
       this.setState({
         operator: op
