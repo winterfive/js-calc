@@ -1,5 +1,3 @@
-@import "breakpoint";
-
 // General Vars
 $bg-color: lightblue;
 $font-sz: 2.1em;
@@ -85,13 +83,14 @@ body {
 	box-shadow: none;
 }
 
-.opsButton {
+.equalsButton {
   @extend .numButton;
   height: 78px;
   width: 80px;
+  background-color: $equal-btn;
 }
 
-#equals {
-  @extends .numButton;
-  background-color: $equal-btn;
+.opsButton {
+  @extend .equalsButton;
+  background-color: $bg-button;
 }
