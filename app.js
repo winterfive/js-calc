@@ -1,4 +1,4 @@
-let currentNum = 0;
+let currentNum, result = 0;
 let num1Locked, num2Locked, opLocked, hasDecimal = false;
 
 class MyApp extends React.Component {
@@ -20,13 +20,15 @@ class MyApp extends React.Component {
       operator: ""
     });
     currentNum = 0;
+    result = 0;
     num1Locked = false;
     num2Locked = false;
     opLocked = false;
+    hasDecimal = false;
   }
   
   handleInput(input) {
-    console.log("input is: " + input + ", type of input: " + typeof input);    
+    //console.log("input is: " + input + ", type of input: " + typeof input);    
     if(!isNaN(input)) {
       this.handleNumber(input);      
     }
