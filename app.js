@@ -1,4 +1,5 @@
 let currentNum = 0;
+let num1 = 0;
 let result = 0;
 let hasDecimal = false;
 let num1Entered = false;
@@ -76,17 +77,22 @@ class MyApp extends React.Component {
   // string -> void
   handleOperator(op) {
     operator = op;
-    this.setForNextNumber();
+    if(num1Entered) {
+      calculate();
+    } else {
+      this.setForNextNumber();
+    }    
   }
   
   
   // Sets up state for entry of next operand
   // void -> void
   setForNextNumber() {
+    // have two operands been entered?
     if(!num1Entered) {
       num1Entered = true;
-      num1 = currentNum;
     }    
+    num1 = currentNum;   
     hasDecimal = false;    
     currentNum = 0;
     console.log("set for next number");
@@ -94,7 +100,7 @@ class MyApp extends React.Component {
 
   calculate() {
     console.log("got into calculate");
-    switch(this.operator) {
+    switch(operator) {
       case "divide":
         result = num1 / currentNum;
         break;
