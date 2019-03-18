@@ -28,14 +28,16 @@ class MyApp extends React.Component {
   }
   
   handleInput(input) {
-    //console.log("input is: " + input + ", type of input: " + typeof input);    
     if(!isNaN(input)) {
+      console.log("handleInput: number");
       this.handleNumber(input);      
     }
     else if(input === 'decimal') {
+      console.log("handleInput: decimal");
       this.handleDecimal();      
     } else {
       // input is operator
+      console.log("handleInput: op");
       this.handleOperator(input);           
     }
   }
@@ -57,8 +59,6 @@ class MyApp extends React.Component {
     this.setState({
       displayNum: currentNum
     });
-    
-    console.log("# currentNum is: " + currentNum);
   }
 
   // Handles decimal input
@@ -80,20 +80,29 @@ class MyApp extends React.Component {
   
   // Saves operator last selected by user
   // string -> void
-  handleOperator(op) {
-    //console.log("op is: " + op + ", typof op is: " + typeof op);
+  handleOperator(op) {        
     if(op === "equals") {
       this.displayResult();
     } else {
+      // user selected +, -, /, or x
       this.setState({
         operator: op
       });
-      if(haveFirstOperand === false) {
-        this.storeOperand();
-      } else {
+      
+      // if we have two operands
+      if(num1Locked) {
         this.calculate();
+      } else {
+        // store first operand
+        this.setState({
+          num1: currentNum
+        });
+        num1Locked = true;
+        currentNum = 0;
       }            
-    }    
+    }
+    // reset hasDecimal
+    hasDecimal = false;
   }
   
   displayResult() {
@@ -103,9 +112,6 @@ class MyApp extends React.Component {
   }
   
   calculate() {
-    console.log("c num1 is: " + this.state.num1);
-    console.log("c currentNum is: " + currentNum);
-    console.log("c operator is: " + this.state.operator);
     switch(this.state.operator) {
       case "divide":
         result = this.state.num1 / currentNum;
@@ -125,7 +131,8 @@ class MyApp extends React.Component {
     this.setState({
       num1: result
     })
-    currentNum = 0;    
+    currentNum = 0;
+    this.displayResult();
   }
 
   render() {
