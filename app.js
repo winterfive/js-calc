@@ -1,5 +1,7 @@
-let currentNum, result = 0;
-let num1Locked, num2Locked, opLocked, hasDecimal = false;
+let currentNum = 0;
+let result = 0;
+let num1Locked = false;
+let hasDecimal = false;
 
 class MyApp extends React.Component {
   constructor(props) {
@@ -82,6 +84,7 @@ class MyApp extends React.Component {
   // string -> void
   handleOperator(op) {        
     if(op === "equals") {
+      console.log("equals pressed");
       this.displayResult();
     } else {
       // user selected +, -, /, or x
@@ -91,6 +94,7 @@ class MyApp extends React.Component {
       
       // if we have two operands
       if(num1Locked) {
+        console.log("calculating...");
         this.calculate();
       } else {
         // store first operand
