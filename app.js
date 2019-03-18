@@ -1,6 +1,7 @@
 let currentNum = 0;
-let haveOperator = false;
-let haveFirstOperand = false;
+let result = 0;
+let num1Locked = false;
+let hasDecimal = false;
 
 class MyApp extends React.Component {
   constructor(props) {
@@ -10,13 +11,10 @@ class MyApp extends React.Component {
       num1: 0,
       num2: 0,
       operator: ""
-    };
-    this.handleNumber = this.handleNumber.bind(this);
-    this.clearAll = this.clearAll.bind(this);
-    this.handleOperator = this.handleOperator.bind(this);
-    this.assignFirstOperand = this.assignFirstOperand.bind(this);
-    this.applyMath = this.applyMath.bind(this);
-  }
+    }
+    this.calculate = this.calculate.bind(this);
+  }  
+  
 
   clearAll() {    
     this.setState({
@@ -26,17 +24,34 @@ class MyApp extends React.Component {
       operator: ""
     });
     currentNum = 0;
-    haveOperator = false;
-    haveFirstOperand = false;
+    result = 0;
+    num1Locked = false;
+    hasDecimal = false;
   }
-
-  calculate() {
-    // switch statement TODO
+  
+  
+  // Handles initial input by user
+  // string or number -> void
+  handleInput(input) {
+    if(!isNaN(input)) {
+      console.log("handleInput: number");
+      this.handleNumber(input);      
+    }
+    else if(input === 'decimal') {
+      console.log("handleInput: decimal");
+      this.handleDecimal();      
+    } else {
+      // input is operator
+      console.log("handleInput: op");
+      this.handleOperator(input);           
+    }
   }
+  
 
-  // Handles numerical input
-  // int -> void
+  // Displays numerical input
+  // number -> void
   handleNumber(digit) {
+    // Operands limited to 20 places
     if(currentNum.length >= 20) {
       alert("Operand length limited to 20 places.");
     } 
@@ -45,22 +60,26 @@ class MyApp extends React.Component {
         currentNum = 0;
     } else {
       currentNum = currentNum === 0? String(digit) : currentNum + digit; 
-    }
+    }    
     
     this.setState({
       displayNum: currentNum
-    })
+    });
+    console.log("digit handled");
   }
   
+
   // Handles decimal input
   // void -> void
-  handleDot() {
-    if(currentNum.indexOf('.') === -1) {
+  handleDecimal() {
+    if(!hasDecimal) {
       currentNum = currentNum + '.';
       this.setState({      
         displayNum: currentNum
-      });       
-    }    
+      })
+    }
+    hasDecimal = true;
+    console.log("decimal handled");
   }
   
   /*
@@ -72,59 +91,69 @@ class MyApp extends React.Component {
   // Saves operator last selected by user
   // string -> void
   handleOperator(op) {
-    if(op === 'equals') {
-      this.applyMath();
+    // user selected =
+    if(op === "equals") {
+      console.log("equals pressed");
+      this.displayResult();
     } else {
+      console.log("operator pressed");
+      // user selected +, -, /, or x
       this.setState({
         operator: op
       });
-      haveOperator = true;
-      this.assignFirstOperand();
+      
+      // if we have two operands stored
+      if(num1Locked) {
+        console.log("num1Locked: " + num1Locked + ", calling calculate() ");  // calculate not being called TODO
+        this.calculate();
+      } else {
+        // store first operand
+        console.log("storing num1");
+        this.setState({
+          num1: currentNum
+        });
+        console.log("num1: " + this.state.num1);  // this shows num1 is 0 TODO
+        num1Locked = true;
+        currentNum = 0;
+      }            
     }
+    // reset hasDecimal for 2nd operand
+    hasDecimal = false;
   }
   
-  // Changes num1 state once an operator is selected
-  // void -> void  
-  assignFirstOperand() {
-    // haveOperator handles user selecting several operators 
-    if(haveFirstOperand === false) {
-      this.setState({
-        num1: currentNum 
-      });
-      haveFirstOperand = true;
-      currentNum = 0;
-    }
-  }
   
-  applyMath() {
-    let result = 0;
-    
-    if(haveOperator) {
-      switch(this.state.operator) {
-        case "divide":
-          result = this.state.num1 / currentNum;
-          break;
-        case "times":
-          result = this.state.num1 * currentNum;
-          break;
-        case "minus":
-          result = this.state.num1 - currentNum;
-          break;
-        case "plus":
-          result = parseFloat(this.state.num1) + parseFloat(currentNum);
-          break;
-        default:
-          break;
-      }      
-    } else {
-      alert("You haven't selected an operation.")
-    }
-    console.log("result is: " + result);
+  displayResult() {
     this.setState({
       displayNum: result
     })
-    result = 0;
   }
+  
+ 
+  calculate() {
+    console.log("got into calculate");
+    switch(this.state.operator) {
+      case "divide":
+        result = this.state.num1 / currentNum;
+        break;
+      case "times":
+        result = this.state.num1 * currentNum;
+        break;
+      case "minus":
+        result = this.state.num1 - currentNum;
+        break;
+      case "plus":
+        result = parseFloat(this.state.num1) + parseFloat(currentNum);
+        break;
+      default:
+        break;
+    }
+    this.setState({
+      num1: result
+    })
+    currentNum = 0;
+    this.displayResult();
+  }
+  
 
   render() {
     return (
@@ -135,35 +164,35 @@ class MyApp extends React.Component {
         <div id="buttonDiv">
           <div>
             <div id="row1" className="row">
-              <div id="seven" className="numButton" onClick={() => this.handleNumber(7)}>
+              <div id="seven" className="numButton" onClick={() => this.handleInput(7)}>
                 7
               </div>
-              <div id="eight" className="numButton" onClick={() => this.handleNumber(8)}>
+              <div id="eight" className="numButton" onClick={() => this.handleInput(8)}>
                 8
               </div>
-              <div id="nine" className="numButton" onClick={() => this.handleNumber(9)}>
+              <div id="nine" className="numButton" onClick={() => this.handleInput(9)}>
                 9
               </div>
             </div>
             <div id="row2" className="row">
-              <div id="four" className="numButton" onClick={() => this.handleNumber(4)}>
+              <div id="four" className="numButton" onClick={() => this.handleInput(4)}>
                 4
               </div>
-              <div id="five" className="numButton" onClick={() => this.handleNumber(5)}>
+              <div id="five" className="numButton" onClick={() => this.handleInput(5)}>
                 5
               </div>
-              <div id="six" className="numButton" onClick={() => this.handleNumber(6)}>
+              <div id="six" className="numButton" onClick={() => this.handleInput(6)}>
                 6
               </div>
             </div>
             <div id="row3" className="row">
-              <div id="three" className="numButton" onClick={() => this.handleNumber(3)}>
+              <div id="three" className="numButton" onClick={() => this.handleInput(3)}>
                 3
               </div>
-              <div id="two" className="numButton" onClick={() => this.handleNumber(2)}>
+              <div id="two" className="numButton" onClick={() => this.handleInput(2)}>
                 2
               </div>
-              <div id="one" className="numButton" onClick={() => this.handleNumber(1)}>
+              <div id="one" className="numButton" onClick={() => this.handleInput(1)}>
                 1
               </div>
             </div>
@@ -171,28 +200,28 @@ class MyApp extends React.Component {
               <div id="clear" className="numButton" onClick={() => this.clearAll()}>
                 C
               </div>
-              <div id="zero" className="numButton" onClick={() => this.handleNumber(0)}>
+              <div id="zero" className="numButton" onClick={() => this.handleInput(0)}>
                 0
               </div>
-              <div id="decimal" className="numButton" onClick={() => this.handleDot()}>
+              <div id="decimal" className="numButton" onClick={() => this.handleInput('decimal')}>
                 .
               </div>
             </div>
           </div>
           <div id="opsDiv">
-            <div id="divide" className="opsButton" onClick={() => this.handleOperator('divide')}>
+            <div id="divide" className="opsButton" onClick={() => this.handleInput('divide')}>
               <i class="fas fa-divide" />
             </div>
-            <div id="multiply" className="opsButton" onClick={() => this.handleOperator('times')}>
+            <div id="multiply" className="opsButton" onClick={() => this.handleInput('times')}>
               <i class="fas fa-times" />
             </div>
-            <div id="subtract" className="opsButton" onClick={() => this.handleOperator('minus')}>
+            <div id="subtract" className="opsButton" onClick={() => this.handleInput('minus')}>
               <i class="fas fa-minus" />
             </div>
-            <div id="add" className="opsButton" onClick={() => this.handleOperator('plus')}>
+            <div id="add" className="opsButton" onClick={() => this.handleInput('plus')}>
               <i class="fas fa-plus" />
             </div>
-            <div id="equals" className="opsButton" onClick={() => this.handleOperator('equals')}>
+            <div id="equals" className="opsButton" onClick={() => this.handleInput('equals')}>
               <i class="fas fa-equals" />=
             </div>
           </div>
