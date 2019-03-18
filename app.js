@@ -28,15 +28,14 @@ class MyApp extends React.Component {
   // Handles initial input by user
   // string or number -> void
   handleInput(input) {
+    // input is number
     if (!isNaN(input)) {
-      console.log("handleInput: number");
       this.handleNumber(input);
+      // input is decimal
     } else if (input === "decimal") {
-      console.log("handleInput: decimal");
       this.handleDecimal();
     } else {
-      // input is operator
-      console.log("handleInput: op");
+      // input is an operator
       this.handleOperator(input);
     }
   }
@@ -57,7 +56,6 @@ class MyApp extends React.Component {
     this.setState({
       displayNum: currentNum
     });
-    console.log("number handled");
   }
 
   // Handles decimal input
@@ -70,20 +68,18 @@ class MyApp extends React.Component {
       });
     }
     hasDecimal = true;
-    console.log("decimal handled");
   }
 
   // Handles operator input
   // string -> void
   handleOperator(op) {
-    if(num1Entered || op === 'equals') {
+    if(op === 'equals' || num1Entered) {
       this.calculate();
     } else {
       this.setForNextNumber();
     }
     operator = op;
-    console.log("op is: " + op);
-        
+    console.log("op is: " + op);        
   }
   
   
@@ -96,14 +92,15 @@ class MyApp extends React.Component {
       num1 = currentNum;
       currentNum = 0;
     }       
-    hasDecimal = false;        
-    console.log("set for next number");
+    hasDecimal = false;
   }
-
+  
+  // Calculates num1 and currentNum using stored operator
+  // void -> void
   calculate() {
-    console.log("got into calculate");
-    console.log("operator is: " + operator + ", type: " + typeof operator);
-    switch(operator) {
+    console.log('currentNum: ' + currentNum);
+    if(currentNum !== 0) {
+      switch(operator) {
       case "divide":
         result = num1 / currentNum;
         break;
@@ -117,8 +114,9 @@ class MyApp extends React.Component {
         // adding operands
         result = parseFloat(num1) + parseFloat(currentNum);
         break;
-    }
-    
+      } 
+      
+      // round result if over 20 places
     if(result.length > 20) {
       result = +result.toFixed(20);
     }
@@ -128,6 +126,7 @@ class MyApp extends React.Component {
     })
     num1 = result;
     currentNum = 0;
+    }    
     console.log('result is: ' + result);
   }
 
