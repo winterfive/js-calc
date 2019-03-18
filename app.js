@@ -57,7 +57,7 @@ class MyApp extends React.Component {
     this.setState({
       displayNum: currentNum
     });
-    console.log("digit handled");
+    console.log("number handled");
   }
 
   // Handles decimal input
@@ -77,8 +77,9 @@ class MyApp extends React.Component {
   // string -> void
   handleOperator(op) {
     operator = op;
+    console.log("op is: " + op);
     if(num1Entered) {
-      calculate();
+      this.calculate();
     } else {
       this.setForNextNumber();
     }    
@@ -91,10 +92,10 @@ class MyApp extends React.Component {
     // have two operands been entered?
     if(!num1Entered) {
       num1Entered = true;
-    }    
-    num1 = currentNum;   
-    hasDecimal = false;    
-    currentNum = 0;
+      num1 = currentNum;
+      currentNum = 0;
+    }       
+    hasDecimal = false;        
     console.log("set for next number");
   }
 
