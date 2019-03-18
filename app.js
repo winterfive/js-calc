@@ -76,13 +76,14 @@ class MyApp extends React.Component {
   // Handles operator input
   // string -> void
   handleOperator(op) {
-    operator = op;
-    console.log("op is: " + op);
-    if(num1Entered) {
+    if(num1Entered || op === 'equals') {
       this.calculate();
     } else {
       this.setForNextNumber();
-    }    
+    }
+    operator = op;
+    console.log("op is: " + op);
+        
   }
   
   
@@ -101,6 +102,7 @@ class MyApp extends React.Component {
 
   calculate() {
     console.log("got into calculate");
+    console.log("operator is: " + operator + ", type: " + typeof operator);
     switch(operator) {
       case "divide":
         result = num1 / currentNum;
@@ -121,6 +123,7 @@ class MyApp extends React.Component {
     })
     num1 = result;
     currentNum = 0;
+    console.lof('result is: ' + result);
   }
 
   render() {
