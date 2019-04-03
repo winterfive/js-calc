@@ -1,3 +1,9 @@
+// JS Calculator
+// by Lee Gainer
+// March 2019
+// GitHub: https://github.com/winterfive/jscalc
+
+
 let currentNum = 0;
 let num1 = 0;
 let result = 0;
@@ -79,7 +85,8 @@ class MyApp extends React.Component {
       this.setForNextNumber();
     }
     operator = op;
-    console.log("op is: " + op);        
+    
+    // change button color via id to 
   }
   
   
@@ -262,10 +269,10 @@ class MyApp extends React.Component {
             </div>
             <div
               id="equals"
-              className="opsButton"
+              className="equalsButton"
               onClick={() => this.handleInput("equals")}
             >
-              <i class="fas fa-equals" />=
+              <i class="fas fa-equals" />
             </div>
           </div>
         </div>
