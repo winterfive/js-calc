@@ -79,11 +79,8 @@ class MyApp extends React.Component {
   // Handles operator input
   // string -> void
   handleOperator(op) {
-    op === 'equals' || num1Entered ? this.calculate() : this.setForNextNumber();
-    
-    operator = op;
-    
-    // change button color via id to 
+    op === 'equals' || num1Entered ? this.calculate() : this.setForNextNumber();    
+    operator = op; 
   }
   
   
@@ -102,7 +99,6 @@ class MyApp extends React.Component {
   // Calculates num1 and currentNum using stored operator
   // void -> void
   calculate() {
-    console.log('currentNum: ' + currentNum);
     if(currentNum !== 0) {
       switch(operator) {
       case "divide":
@@ -130,8 +126,7 @@ class MyApp extends React.Component {
     })
     num1 = result;
     currentNum = 0;
-    }    
-    console.log('result is: ' + result);
+    }
   }
 
   render() {
