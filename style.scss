@@ -9,7 +9,6 @@ $num-color: rgb(102, 255, 102);
 
 // Buttons
 $bg-button: white;
-$bg-button-hv: rgb(0, 77, 153);
 $button-shadow: rgb(100, 100, 100);
 $button-trans: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 $equal-btn: rgb(230, 100, 0);
@@ -68,19 +67,14 @@ body {
   justify-content: center;
   align-items: center;
   box-shadow: 0 3px $button-shadow;
-	transition: $button-trans;
-	-moz-transition: $button-trans;
-	-webkit-transition: $button-trans;
+  transition: $button-trans;
+  -moz-transition: $button-trans;
+  -webkit-transition: $button-trans;
 }
 
-/*.numButton:hover {
-  background-color: $bg-button-hv;
-  color: $bg-button;
-}*/
-
 .numButton:active {
-	transform: translateY(2px);
-	box-shadow: none;
+  transform: translateY(2px);
+  box-shadow: none;
 }
 
 .equalsButton {
@@ -93,4 +87,30 @@ body {
 .opsButton {
   @extend .equalsButton;
   background-color: $bg-button;
+}
+
+@media only screen and (max-width: 500px) {
+  body {
+    font-size: 1.3em;
+  }
+
+  #displayNumDiv {
+    height: 60px;
+    margin-bottom: 10px;
+  }
+
+  .numButton {
+    height: 50px;
+    width: 50px;
+  }
+
+  .equalsButton {
+    height: 38px;
+    width: 58px;
+    background-color: $equal-btn;
+  }
+
+  .opsButton {
+    background-color: $bg-button;
+  }
 }
