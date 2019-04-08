@@ -1,6 +1,6 @@
 // JS Calculator
 // by Lee Gainer
-// March 2019
+// March/April 2019
 // GitHub: https://github.com/winterfive/jscalc
 
 
@@ -79,11 +79,8 @@ class MyApp extends React.Component {
   // Handles operator input
   // string -> void
   handleOperator(op) {
-    if(op === 'equals' || num1Entered) {
-      this.calculate();
-    } else {
-      this.setForNextNumber();
-    }
+    op === 'equals' || num1Entered ? this.calculate() : this.setForNextNumber();
+    
     operator = op;
     
     // change button color via id to 
