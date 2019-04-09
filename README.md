@@ -1,5 +1,5 @@
 ## jscalc
-A responsive calculator app created using Reactjs, HTML5, and SCSS.
+A responsive calculator app created using Reactjs, HTML5, SCSS and Flexbox.
 
 View it on CodePen: https://codepen.io/CodeMoo/full/vPaYEQ
 
